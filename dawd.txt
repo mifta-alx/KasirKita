@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <title>Materialart Admin Template</title>
+    <link href="<?= base_url(); ?>/public/templateart/dist/css/style.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <link href="<?= base_url(); ?>/public/templateart/dist/css/pages/authentication.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <!-- Sweet Alert 2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>/public/template/assets/sweetalert2/sweetalert2.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        @media (max-width: 767px) {
+            body {
+                max-height: 980px !important;
+            }
+
+            /* .gambar{
+            display: none;
+        } */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">Material Admin</p>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex justify-content-center align-items-center " style="background:url(<?= base_url(); ?>/public/templateart/assets/images/big/auth-bg2.jpg) no-repeat left center;">
+            <div class="container">
+                <div class="row gambar">
+                    <div class="col s12 l8 m6 demo-text">
+                        <span class="db"><img src="<?= base_url(); ?>/public/templateart/assets/images/logo-icon.png" alt="logo" /></span>
+                        <h1 class="font-light m-t-40">Welcome to the <span class="font-medium black-text">Kasir </span><span class="font-medium" style="color:#0168fa">Kita</span></h1>
+                        <p>This is just a demo text which you can change as per your requeirment, so change once you get chance. this is default text.</p>
+                    </div>
+                </div>
+                <div class="auth-box auth-sidebar">
+                    <div id="loginform">
+                        <div class="p-l-10">
+                            <h5 class="font-medium m-b-0 m-t-40">Sign Up to Kasir Kita</h5>
+                            <small>Just login to your account</small>
+                        </div>
+                        <!-- Form -->
+                        <div class="row">
+                            <form class="col s12" method="post" action="<?= base_url('login/register') ?>">
+                                <!-- email -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="nama_pengguna" name="nama_pengguna" type="text" class="form-control <?= ($validation->hasError('nama_pengguna')) ? 'is-invalid' : ''; ?>">
+                                        <label for="name_pengguna">Nama</label>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('nama_pengguna'); ?>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- email -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" name="email" type="email" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>">
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('email'); ?>
+                                    </div>
+                                </div>
+                                <!-- username -->
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="username" name="username" type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>">
+                                        <label for="username">Username</label>
+                                    </div>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('email'); ?>
+                                    </div>
+                                </div>
+                                <!-- pwd -->
+                                <div class="row">
+                                    <div class="input-group col s6" id="show_hide_password">
+                                        <input id="password1" name="password" type="password" class="form-control <?= ($validation->hasError('password1')) ? 'is-invalid' : ''; ?>">
+                                        <label for="password1">Password</label>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('password1'); ?>
+                                    </div>
+                                    </div>
+                                    <div class="input-group col s6" id="show_hide_password">
+                                        <input id="password2" name="password" type="password" class="form-control <?= ($validation->hasError('password1')) ? 'is-invalid' : ''; ?>">
+                                        <label for="password2">Password</label>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('password2'); ?>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- pwd -->
+                                <!-- <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="cpassword" type="password" class="validate" required>
+                                        <label for="cpassword">Password</label>
+                                    </div>
+                                </div> -->
+                                <!-- pwd -->
+                                <div class="row m-t-40">
+                                    <div class="col s12">
+                                        <button class="btn-large w100 red" type="submit">Sign Up</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="center-align m-t-20 db">
+                            Already have an account? <a id="sign-in" href="<?= base_url('login'); ?>" style="cursor: pointer;">Sign in!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="<?= base_url(); ?>/public/templateart/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>/public/templateart/dist/js/materialize.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>/public/template/assets/sweetalert2/sweetalert2.min.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $('.tooltipped').tooltip();
+        // ============================================================== 
+        // Login and Recover Password 
+        // ============================================================== 
+        // $('#to-recover').on("click", function() {
+        //     $("#loginform").slideUp();
+        //     $("#recoverform").fadeIn();
+        // });
+        // $('#cancel').on("click", function() {
+        //     $("#loginform").slideDown();
+        //     $("#recoverform").slideUp();
+        // });
+        // $('#sign-up').on("click", function() {
+        //     $("#loginform").slideUp();
+        //     $("#signform").slideDown();
+        // });
+        // $('#sign-in').on("click", function() {
+        //     $("#loginform").slideDown();
+        //     $("#signform").slideUp();
+        // });
+        $(function() {
+            $(".preloader").fadeOut();
+        });
+        $(document).ready(function() {
+            <?php if (session()->getFlashdata('msg')) : ?>
+                <?php if (session()->getFlashdata('success')) : ?>
+                    Swal.fire({
+                        title: 'Success',
+                        text: 'Register Success',
+                        icon: 'success',
+                        confirmButtonColor: '#007bff',
+                        //    cancelButtonColor: '#d33',
+                    });
+                <?php endif; ?>
+            <?php endif ?>
+        });
+        $(document).ready(function() {
+            <?php if (session()->getFlashdata('bahaya')) : ?>
+                <?php if (session()->getFlashdata('success')) : ?>
+                    Swal.fire({
+                        title: 'Gagal!',
+                        text: '<?= session()->getFlashdata('bahaya'); ?>',
+                        icon: 'error'
+                    });
+                <?php endif; ?>
+            <?php endif ?>
+        });
+        (document).ready(function() {
+            $("#show_hide_password button").on('click', function(event) {
+                event.preventDefault();
+                if ($('#show_hide_password input').attr("type") == "text") {
+                    $('#show_hide_password input').attr('type', 'password');
+                    $('#show_hide_password i').addClass("fa-eye");
+                    $('#show_hide_password i').removeClass("fa-eye-slash");
+                } else if ($('#show_hide_password input').attr("type") == "password") {
+                    $('#show_hide_password input').attr('type', 'text');
+                    $('#show_hide_password i').removeClass("fa-eye");
+                    $('#show_hide_password i').addClass("fa-eye-slash");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

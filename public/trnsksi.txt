@@ -1,0 +1,115 @@
+
+        var jumlah = '0'
+        $('.btn-number').click(function(e) {
+            e.preventDefault();
+
+            fieldName = $(this).attr('data-field');
+            type = $(this).attr('data-type');
+            // var input = $("input[name='" + fieldName + "']");
+            var input = $(this).parent().parent().find('input');
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                if (type == 'minus') {
+
+                    if (currentVal > input.attr('min')) {
+                        input.val(currentVal - 1).change();
+                        jumlah = (currentVal - 1);
+                    }
+                    if (parseInt(input.val()) == input.attr('min')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                } else if (type == 'plus') {
+
+                    if (currentVal < input.attr('max')) {
+                        input.val(currentVal + 1).change();
+                        jumlah = (currentVal + 1);
+                    }
+                    if (parseInt(input.val()) == input.attr('max')) {
+                        $(this).attr('disabled', true);
+                    }
+
+                }
+            } else {
+                input.val(0);
+            }
+            console.log(jumlah);
+        });
+        $('.input-number').focusin(function() {
+            $(this).data('oldValue', $(this).val());
+        });
+        $('.input-number').change(function() {
+
+            minValue = parseInt($(this).attr('min'));
+            maxValue = parseInt($(this).attr('max'));
+            valueCurrent = parseInt($(this).val());
+
+            name = $(this).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the minimum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+            if (valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                alert('Sorry, the maximum value was reached');
+                $(this).val($(this).data('oldValue'));
+            }
+        });
+
+        $(".input-number").keydown(function(e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+
+        $('.info').on('click', function(e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+            $('.off-canvas').addClass('show');
+            $('.bckdrp').removeClass('d-none');
+        });
+        $('.close').on('click', function(e) {
+            e.preventDefault();
+            var target = $(this).attr('href');
+            $('.off-canvas').removeClass('show');
+            $('.bckdrp').addClass('d-none');
+        });
+        $(document).on('click touchstart', function(e) {
+            e.stopPropagation();
+
+            // closing of sidebar menu when clicking outside of it
+            if (!$(e.target).closest('.off-canvas-menu').length) {
+                var offCanvas = $(e.target).closest('.off-canvas').length;
+                if (!offCanvas) {
+                    $('.off-canvas.show').removeClass('show');
+                }
+            }
+        });
+        $('.btn-next').on('click', function() {
+            // get data from button edit
+            var id = $(this).data('id_produk');
+            var jumlah = $('#quantity'.id).value;
+            var nama_produk = $(this).data('nama.produk');
+            var total = $(this).data('total');
+            console.log(nama_produk);
+            // Set data to Form Edit
+            if (jumlah !== '0') {
+                $('.nama_produk').innerHTML = nama_produk;
+                $('.total').innerHTML = total;
+            }
+            // Call Modal Edit
+            $('.off-canvas').addClass('show');
+        });
